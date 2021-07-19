@@ -10,10 +10,10 @@ router.post("/login", async (req, res) => {
   if (validate(username, password)) {
     return login(res, username, password);
   }
-  return res
-    .send
+  return res.send(
     // Fail object in parens
-    ();
+    { success: false, data: null, error: "Invalid data provided" }
+  );
 });
 
 // TODO Signup route
@@ -22,13 +22,11 @@ router.post("/signup", async (req, res) => {
   if (validate(username, password)) {
     return signup(res, username, password);
   }
-  return res
-    .send
+  return res.send(
     // Fail object in parens
-    ();
+    { success: false, data: null, error: "Invalid data provided" }
+  );
 });
-
-// TODO
 
 // ! validate function checks if meets length requirements
 function validate(username, password) {

@@ -24,7 +24,7 @@ async function login(res, username, password) {
   }
 }
 
-async function singup(res, username, password) {
+async function signup(res, username, password) {
   let json = { success: false, data: null, error: null };
   try {
     const users = await query("SELECT * FROM users WHERE username = ?", [
@@ -47,3 +47,5 @@ async function singup(res, username, password) {
     return res.send(json);
   }
 }
+
+module.exports = { login, signup };
