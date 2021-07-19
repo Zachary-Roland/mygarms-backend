@@ -1,5 +1,4 @@
 const bcrypt = require("bcrypt");
-const { format } = require("path/posix");
 const query = require("../conf/mysql.conf");
 
 async function login(res, username, password) {
