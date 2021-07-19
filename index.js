@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3306;
 const userRoutes = require("./routes/users.routes");
 const garmsRoutes = require("./routes/garms.routes");
 const needsRoutes = require("./routes/needs.routes");
