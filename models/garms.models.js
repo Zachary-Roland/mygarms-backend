@@ -1,5 +1,5 @@
 const { getFips } = require("crypto");
-const query = require("../conf/mysql.conf");
+const query = require("../config/mysql.conf");
 
 async function addGarm(res, user_id, garm) {
   let json = { success: false, data: null, error: null };
