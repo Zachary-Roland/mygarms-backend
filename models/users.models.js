@@ -1,6 +1,29 @@
 const bcrypt = require("bcrypt");
 const query = require("../config/mysql.conf");
 
+async function signup(res, username, password) {
+  let json = { success: false, data: null, error: null };
+  try {
+    const users = await query("SELECT * FROM users WHERE username = ?", [
+      username,
+    ]);
+    if (users.length !== 0) {
+      json = { ...json, error: "Username already taken" };
+    } else {
+      const hashed = await bcrypt.hash(password, 10);
+      await query("INSERT INTO user (password, username) VALUES (?,?)", [
+        hashed,
+        username,
+      ]);
+      json = { ...json, success: true };
+    }
+  } catch (err) {
+    json = { ...json, error: "something WENT wrong" };
+  } finally {
+    return res.send(json);
+  }
+}
+
 async function login(res, username, password) {
   // This makes sense as a response. Success will always be true or false.
   // I'm including data and error even though only one will have info at a time, include all 3 keys every time.
