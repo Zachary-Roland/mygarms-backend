@@ -7,6 +7,7 @@ async function signup(res, username, password) {
     const users = await query("SELECT * FROM users WHERE username = ?", [
       username,
     ]);
+    console.log(users);
     if (users.length !== 0) {
       json = { ...json, error: "Username already taken" };
     } else {
