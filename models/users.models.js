@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const query = require("../conf/mysql.conf");
+const query = require("../config/mysql.conf");
 
 async function login(res, username, password) {
   // This makes sense as a response. Success will always be true or false.
