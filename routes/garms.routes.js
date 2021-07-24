@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
+const { addGarm, deleteGarm, getByUserId } = require("../models/garms.models");
 
 router.post("/add", (req, res) => {
   const { user_id, garm } = req.body;
-  if (user_id && garm && garmName && garmCondition && garmSeason && garmOwn) {
+  if (user_id) {
     return addGarm(res, user_id, garm);
   }
   return res.send({
