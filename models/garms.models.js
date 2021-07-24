@@ -5,7 +5,7 @@ async function addGarm(res, user_id, garm) {
   let json = { success: false, data: null, error: null };
   try {
     const result = await query(
-      "INSERT INTO Garments (user_id, garm_title, garm_type, garm_brand, garm_cost, garm_condition, garm_season, garm_url, garm_own) VALUES (?,?,?,?,?,?,?)",
+      "INSERT INTO garments (user_id, garm_title, garm_type, garm_brand, garm_cost, garm_condition, garm_season, garm_url, garm_own) VALUES (?,?,?,?,?,?,?)",
       [
         user_id,
         garm.title,
@@ -30,7 +30,7 @@ async function addGarm(res, user_id, garm) {
 async function deleteGarm(res, user_id, garm_id) {
   let json = { success: false, data: null, error: null };
   try {
-    await query("DELETE FROM Garments WHERE user_id = ? AND garm_id = ?", [
+    await query("DELETE FROM garments WHERE user_id = ? AND garm_id = ?", [
       user_id,
       garm_id,
     ]);
@@ -45,7 +45,7 @@ async function deleteGarm(res, user_id, garm_id) {
 async function getByUserId(res, user_id) {
   let json = { success: false, data: null, error: null };
   try {
-    const garms = await query("SELECT * FROM Garments WHERE user_id = ?", [
+    const garms = await query("SELECT * FROM garments WHERE user_id = ?", [
       user_id,
     ]);
     json = { ...json, success: true, data: garms };
