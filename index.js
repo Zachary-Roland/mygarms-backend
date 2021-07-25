@@ -2,9 +2,9 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 8080;
-const userRoutes = require("./routes/users.routes");
-const garmsRoutes = require("./routes/garms.routes");
-const needsRoutes = require("./routes/needs.routes");
+const userRoutes = require("./server/routes/users.routes");
+const garmsRoutes = require("./server/routes/garms.routes");
+const needsRoutes = require("./server/routes/needs.routes");
 
 app.use(express.json());
 app.use(express.static(__dirname + "/build"));
