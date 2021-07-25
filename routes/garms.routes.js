@@ -26,8 +26,16 @@ router.delete("/delete", (req, res) => {
   });
 });
 
-router.get("/user/:user_id", (req, res) => {
-  return getByUserId(res, req.params.user_id);
+router.get("/user/", (req, res) => {
+  const { user_id } = req.body;
+  if (user_id) {
+    return getByUserId(res, user_id);
+  }
+  return res.send({
+    success: false,
+    error: "now you fucked up",
+    data: null,
+  });
 });
 
 module.exports = router;
