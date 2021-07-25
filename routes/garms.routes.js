@@ -26,7 +26,7 @@ router.delete("/delete", (req, res) => {
   });
 });
 
-router.get("/user/", (req, res) => {
+router.get("/user", (req, res) => {
   const { user_id } = req.body;
   if (user_id) {
     return getByUserId(res, user_id);
