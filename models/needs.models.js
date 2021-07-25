@@ -1,14 +1,14 @@
 const query = require("../config/mysql.conf");
 
-async function addNeed(res, user_id, text) {
+async function addNeed(res, garm_id, need) {
   let json = { success: false, data: null, error: null };
   try {
-    console.log(user_id, text);
+    console.log(garm_id, need.text);
     const result = await query(
-      "INSERT INTO needs (user_id, text) VALUES (?,?)",
-      [user_id, text]
+      "INSERT INTO needs (garm_id, text) VALUES (?,?)",
+      [garm_id, need.text]
     );
-    need = { ...need, id: result.insertId, user_id };
+    need = { ...need, id: result.insertId, garm_id };
     json = { ...json, success: true, data: need };
   } catch (err) {
     console.log(err);
@@ -18,11 +18,11 @@ async function addNeed(res, user_id, text) {
   }
 }
 
-async function deleteNeed(res, user_id, need_id) {
+async function deleteNeed(res, garm_id, need_id) {
   let json = { success: false, data: null, error: null };
   try {
-    await query("DELETE FROM needs WHERE user_id = ? AND need_id = ?", [
-      user_id,
+    await query("DELETE FROM needs WHERE garm_id = ? AND need_id = ?", [
+      garm_id,
       need_id,
     ]);
     json = { ...json, success: true };
@@ -34,11 +34,11 @@ async function deleteNeed(res, user_id, need_id) {
   }
 }
 
-async function getByUserId(res, user_id) {
+async function getByGarmId(res, garm_id) {
   let json = { success: false, data: null, error: null };
   try {
-    const needs = await query("SELECT * FROM needs WHERE user_id = ?", [
-      user_id,
+    const needs = await query("SELECT * FROM needs WHERE garm_id = ?", [
+      garm_id,
     ]);
     json = { ...json, success: true, data: needs };
   } catch (err) {
@@ -49,4 +49,4 @@ async function getByUserId(res, user_id) {
   }
 }
 
-module.exports = { addNeed, deleteNeed, getByUserId };
+module.exports = { addNeed, deleteNeed, getByGarmId };

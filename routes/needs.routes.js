@@ -1,11 +1,11 @@
 const express = require("express");
-const { addNeed, deleteNeed, getByUserId } = require("../models/needs.models");
+const { addNeed, deleteNeed, getByGarmId } = require("../models/needs.models");
 const router = express.Router();
 
 router.post("/add", (req, res) => {
-  const { user_id, need } = req.body;
-  if (user_id) {
-    return addNeed(res, user_id, need);
+  const { garm_id, need } = req.body;
+  if (garm_id) {
+    return addNeed(res, garm_id, need);
   }
   return res.send({
     success: false,
@@ -15,9 +15,9 @@ router.post("/add", (req, res) => {
 });
 
 router.delete("/delete", (req, res) => {
-  const { user_id, need_id } = req.body;
-  if (user_id) {
-    return deleteNeed(res, user_id, need_id);
+  const { garm_id, need_id } = req.body;
+  if (garm_id) {
+    return deleteNeed(res, garm_id, need_id);
   }
   return res.send({
     success: false,
@@ -26,10 +26,10 @@ router.delete("/delete", (req, res) => {
   });
 });
 
-router.get("/user", (req, res) => {
-  const { user_id } = req.body;
-  if (user_id) {
-    return getByUserId(res, user_id);
+router.get("/garm", (req, res) => {
+  const { garm_id } = req.body;
+  if (garm_id) {
+    return getByGarmId(res, garm_id);
   }
   return res.send({
     success: false,
