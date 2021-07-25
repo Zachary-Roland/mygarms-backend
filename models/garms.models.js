@@ -1,11 +1,11 @@
-const { getFips } = require("crypto");
 const query = require("../config/mysql.conf");
 
 async function addGarm(res, user_id, garm) {
   let json = { success: false, data: null, error: null };
   try {
+    console.log(user_id, garm);
     const result = await query(
-      "INSERT INTO garments (user_id, garm_title, garm_type, garm_brand, garm_cost, garm_condition, garm_season, garm_url, garm_own) VALUES (?,?,?,?,?,?,?)",
+      "INSERT INTO garments (user_id, garm_title, garm_type, garm_brand, garm_cost, garm_condition, garm_season, garm_url, garm_own) VALUES (?,?,?,?,?,?,?,?,?)",
       [
         user_id,
         garm.title,
@@ -21,6 +21,7 @@ async function addGarm(res, user_id, garm) {
     garm = { ...garm, id: result.insertId, user_id };
     json = { ...json, success: true, data: garm };
   } catch (err) {
+    console.log(err);
     json = { ...json, error: "something went wrong" };
   } finally {
     return res.send(json);
