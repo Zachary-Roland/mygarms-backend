@@ -14,9 +14,16 @@ router.post("/add", (req, res) => {
   });
 });
 
-router.delete("/delete/:user_id/:garm_id", (req, res) => {
-  const { user_id, garm_id } = req.params;
-  return deleteGarm(res, user_id, garm_id);
+router.delete("/delete", (req, res) => {
+  const { user_id, garm_id } = req.body;
+  if (user_id) {
+    return deleteGarm(res, user_id, garm_id);
+  }
+  return res.send({
+    success: false,
+    error: "invalid data provided",
+    data: null,
+  });
 });
 
 router.get("/user/:user_id", (req, res) => {
