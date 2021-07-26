@@ -13,8 +13,8 @@ app.use("/api/users", userRoutes);
 app.use("/api/garms", garmsRoutes);
 app.use("/api/needs", needsRoutes);
 
-// app.get("*", (req, res) => {
-//   return res.sendFile("/build/index.html", { root: __dirname + "/" });
-// });
+app.get("*", (req, res) => {
+  return res.sendFile("/build/index.html", { root: __dirname + "/" });
+});
 
 app.listen(port, () => console.log(`It's alive! (on port ${port})`));
