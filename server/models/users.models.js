@@ -36,7 +36,11 @@ async function login(res, username, password) {
     const user = users[0] || { password: 1234 };
     const matches = await bcrypt.compare(password, user.password);
     if (matches) {
-      json = { ...json, success: matches, data: { username, id: user.id } };
+      json = {
+        ...json,
+        success: matches,
+        data: { username, id: user.user_id },
+      };
     } else {
       json = { ...json, error: "Invalid username / password" };
     }
