@@ -8,14 +8,14 @@ async function addGarm(res, user_id, garm) {
       "INSERT INTO garments (user_id, garm_title, garm_type, garm_brand, garm_cost, garm_condition, garm_season, garm_url, garm_own) VALUES (?,?,?,?,?,?,?,?,?)",
       [
         user_id,
-        garm.title,
-        garm.type,
-        garm.brand,
-        garm.cost,
-        garm.condition,
-        garm.season,
-        garm.img,
-        garm.own,
+        garm.garm_title,
+        garm.garm_type,
+        garm.garm_brand,
+        garm.garm_cost,
+        garm.garm_condition,
+        garm.garm_season,
+        garm.garm_url,
+        garm.garm_own,
       ]
     );
     garm = { ...garm, id: result.insertId, user_id };
@@ -35,7 +35,7 @@ async function deleteGarm(res, user_id, garm_id) {
       user_id,
       garm_id,
     ]);
-    json = { ...json, success: true };
+    json = { ...json, success: true, data: garm_id };
   } catch (err) {
     json = { ...json, error: "Something Went Wrong" };
   } finally {
